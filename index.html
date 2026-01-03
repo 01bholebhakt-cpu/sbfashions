@@ -3,70 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SB Fashions Store | Premium Luxury Apparel</title>
-    <meta name="description" content="Redefining luxury fashion. Premium T-shirts and apparel by Subhash Sheet.">
+    <title>SB Fashions Store | Official Merchandise</title>
     
-    <!-- Google Fonts for Luxury Vibe -->
+    <!-- Modern "Quirky" Font like The Souled Store -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     
-    <!-- Font Awesome for Icons -->
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        /* --- CSS VARIABLES & RESET --- */
+        /* --- 1. SOULED STORE VARIABLES --- */
         :root {
-            --primary-gold: #D4AF37;
-            --primary-dark: #0a0a0a;
-            --secondary-dark: #151515;
-            --text-light: #f5f5f5;
-            --text-grey: #a0a0a0;
-            --font-heading: 'Cinzel', serif;
-            --font-body: 'Montserrat', sans-serif;
-            --transition: all 0.4s ease;
+            --brand-red: #E11B23; /* The exact Souled Store Red */
+            --brand-dark: #2d2d2d; /* Soft Black */
+            --brand-grey: #58595b;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+            --shadow-card: 0 4px 12px rgba(0,0,0,0.08);
+            --font-main: 'Open Sans', sans-serif;
+            --font-head: 'Nunito', sans-serif;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
-            background-color: var(--primary-dark);
-            color: var(--text-light);
-            font-family: var(--font-body);
-            overflow-x: hidden;
-            line-height: 1.6;
+            font-family: var(--font-main);
+            background-color: var(--bg-light);
+            color: var(--brand-dark);
+            padding-top: 120px; /* Space for double header */
         }
 
-        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        a { text-decoration: none; color: inherit; }
         ul { list-style: none; }
-        img { max-width: 100%; display: block; }
 
-        /* --- NAVIGATION --- */
+        /* --- 2. HEADER (Double Layer like Souled Store) --- */
         header {
             position: fixed;
             top: 0;
             width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            padding: 20px 5%;
+            z-index: 1000;
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Top Red Bar (USPs) */
+        .top-bar {
+            background-color: var(--brand-red);
+            color: white;
+            text-align: center;
+            font-size: 0.8rem;
+            font-weight: 700;
+            padding: 8px 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: var(--font-head);
+        }
+
+        /* Main Navbar */
+        .main-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            z-index: 1000;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
-            backdrop-filter: blur(10px);
+            padding: 15px 5%;
+            height: 70px;
         }
 
         .logo {
-            font-family: var(--font-heading);
+            font-family: var(--font-head);
+            font-weight: 800;
             font-size: 1.8rem;
-            color: var(--primary-gold);
-            font-weight: 700;
-            letter-spacing: 2px;
+            color: var(--brand-red);
             text-transform: uppercase;
+            letter-spacing: -1px;
         }
 
         .nav-links {
@@ -75,345 +85,311 @@
         }
 
         .nav-links a {
-            font-size: 0.9rem;
+            font-weight: 700;
+            font-size: 0.95rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            color: var(--text-light);
+            color: var(--brand-dark);
+            transition: 0.2s;
             position: relative;
-            cursor: pointer;
         }
 
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--primary-gold);
+        .nav-links a:hover { color: var(--brand-red); }
+        .nav-links a.active { color: var(--brand-red); }
+
+        .nav-icons {
+            display: flex;
+            gap: 20px;
+            font-size: 1.2rem;
+            color: var(--brand-dark);
         }
 
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0;
-            height: 1px;
-            background: var(--primary-gold);
-            transition: var(--transition);
-        }
+        /* Mobile Menu */
+        .mobile-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
 
-        .nav-links a:hover::after {
+        /* --- 3. HERO CAROUSEL --- */
+        .hero-section {
             width: 100%;
-        }
-
-        .mobile-toggle {
-            display: none;
-            font-size: 1.5rem;
-            color: var(--primary-gold);
-            cursor: pointer;
-        }
-
-        /* --- SECTIONS (SPA STRUCTURE) --- */
-        section {
-            padding: 100px 5% 50px;
-            min-height: 100vh;
-            display: none; /* Hidden by default, JS toggles this */
-            animation: fadeIn 0.8s ease;
-        }
-
-        section.active-section {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- HERO SECTION (HOME) --- */
-        #home {
-            padding: 0;
-            display: flex; /* Override default block for flex layout */
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=1920&auto=format&fit=crop');
+            height: 500px;
+            background-image: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1920&auto=format&fit=crop');
             background-size: cover;
             background-position: center;
-            background-attachment: fixed;
-            text-align: center;
-        }
-
-        .hero-content h1 {
-            font-family: var(--font-heading);
-            font-size: 4rem;
-            color: var(--primary-gold);
-            margin-bottom: 20px;
-            text-shadow: 0 5px 15px rgba(0,0,0,0.8);
-        }
-
-        .hero-content p {
-            font-size: 1.2rem;
-            margin-bottom: 40px;
-            letter-spacing: 1px;
-        }
-
-        .btn-gold {
-            display: inline-block;
-            padding: 15px 40px;
-            background: transparent;
-            border: 1px solid var(--primary-gold);
-            color: var(--primary-gold);
-            text-transform: uppercase;
-            font-weight: 600;
-            letter-spacing: 2px;
-            transition: var(--transition);
-            cursor: pointer;
-        }
-
-        .btn-gold:hover {
-            background: var(--primary-gold);
-            color: var(--primary-dark);
-        }
-
-        /* --- SHOP SECTION --- */
-        .section-title {
-            font-family: var(--font-heading);
-            font-size: 3rem;
-            text-align: center;
-            margin-bottom: 60px;
-            color: var(--primary-gold);
-        }
-
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
-        }
-
-        .product-card {
-            background: var(--secondary-dark);
-            border: 1px solid #222;
-            transition: var(--transition);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--primary-gold);
-            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
-        }
-
-        .product-image {
-            height: 350px;
-            width: 100%;
-            object-fit: cover;
-        }
-
-        .product-info {
-            padding: 20px;
-            text-align: center;
-        }
-
-        .product-title {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        .product-price {
-            color: var(--primary-gold);
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            font-family: var(--font-heading);
-        }
-
-        .btn-buy {
-            width: 100%;
-            padding: 10px;
-            background: #222;
-            border: none;
-            color: white;
-            text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .btn-buy:hover {
-            background: var(--primary-gold);
-            color: black;
-        }
-
-        /* --- ABOUT SECTION --- */
-        .about-container {
             display: flex;
-            flex-wrap: wrap;
             align-items: center;
-            gap: 50px;
-        }
-
-        .about-image {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .about-image img {
-            border: 1px solid var(--primary-gold);
-            padding: 10px;
-        }
-
-        .about-text {
-            flex: 1;
-            min-width: 300px;
-        }
-
-        .about-text h3 {
-            font-family: var(--font-heading);
-            color: var(--primary-gold);
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .about-text p {
-            margin-bottom: 20px;
-            color: var(--text-grey);
-        }
-
-        .signature {
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            margin-top: 20px;
-            color: var(--primary-gold);
-        }
-
-        /* --- CONTACT SECTION --- */
-        .contact-wrapper {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 50px;
             justify-content: center;
-        }
-
-        .contact-info, .contact-form {
-            flex: 1;
-            min-width: 300px;
-            background: var(--secondary-dark);
-            padding: 40px;
-            border: 1px solid #333;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 30px;
-        }
-
-        .contact-item i {
-            font-size: 1.5rem;
-            color: var(--primary-gold);
-            margin-right: 20px;
-            width: 30px;
-        }
-
-        .contact-item h4 {
-            margin-bottom: 5px;
-        }
-
-        .contact-item p {
-            color: var(--text-grey);
-            font-size: 0.9rem;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        input, textarea {
-            width: 100%;
-            padding: 15px;
-            background: #0a0a0a;
-            border: 1px solid #333;
+            text-align: center;
             color: white;
-            font-family: var(--font-body);
+            position: relative;
         }
 
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary-gold);
+        .hero-overlay {
+            background: rgba(0,0,0,0.4);
+            padding: 40px;
+            border-radius: 10px;
+            backdrop-filter: blur(2px);
         }
 
-        /* --- FOOTER --- */
-        footer {
-            background: black;
-            padding: 50px 5% 20px;
-            border-top: 1px solid #222;
+        .hero-title {
+            font-family: var(--font-head);
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-transform: uppercase;
         }
 
-        .footer-content {
+        .btn-red {
+            background-color: var(--brand-red);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 5px;
+            font-weight: 700;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-top: 20px;
+            font-size: 1rem;
+            border: 2px solid var(--brand-red);
+            transition: 0.3s;
+            cursor: pointer;
+        }
+
+        .btn-red:hover {
+            background-color: #c41219;
+            transform: translateY(-2px);
+        }
+
+        /* --- 4. CATEGORY CIRCLES (Iconic TSS feature) --- */
+        .category-row {
             display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            padding: 40px 5%;
+            overflow-x: auto;
+            background: white;
+        }
+
+        .cat-item {
+            text-align: center;
+            cursor: pointer;
+            min-width: 100px;
+        }
+
+        .cat-img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid transparent;
+            transition: 0.3s;
+            margin-bottom: 10px;
+        }
+
+        .cat-item:hover .cat-img { border-color: var(--brand-red); }
+
+        .cat-name {
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--brand-dark);
+        }
+
+        /* --- 5. PRODUCT GRID (Souled Store Style) --- */
+        .section-container {
+            padding: 40px 5%;
+        }
+
+        .section-header {
+            font-family: var(--font-head);
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
             margin-bottom: 40px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .section-header::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: var(--brand-red);
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 30px;
         }
 
-        .footer-brand h2 {
-            font-family: var(--font-heading);
-            color: var(--primary-gold);
+        .product-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            transition: 0.3s;
+            position: relative;
+            border: 1px solid #eee;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.12);
+        }
+
+        .badge-new {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--brand-red);
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+
+        .p-img {
+            width: 100%;
+            height: 320px;
+            object-fit: cover;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .p-details {
+            padding: 15px;
+        }
+
+        .p-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            color: var(--brand-dark);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .p-cat {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 10px;
+        }
+
+        .p-price-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 15px;
         }
 
-        .footer-brand p {
-            color: var(--text-grey);
-            max-width: 300px;
+        .price {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--brand-dark);
         }
 
-        .social-links {
-            margin-top: 20px;
+        .price span {
+            font-size: 0.9rem;
+            text-decoration: line-through;
+            color: #aaa;
+            margin-left: 5px;
         }
 
-        .social-links a {
-            display: inline-flex;
-            justify-content: center;
+        .btn-cart {
+            width: 100%;
+            padding: 10px;
+            background: white;
+            border: 1px solid var(--brand-red);
+            color: var(--brand-red);
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-cart:hover {
+            background: var(--brand-red);
+            color: white;
+        }
+
+        /* --- 6. MEMBERSHIP BANNER --- */
+        .membership-banner {
+            background: #111;
+            color: #FFD700; /* Gold */
+            padding: 40px 5%;
+            margin: 40px 0;
+            display: flex;
             align-items: center;
-            width: 40px;
-            height: 40px;
-            border: 1px solid #333;
-            border-radius: 50%;
-            margin-right: 10px;
-            color: var(--text-light);
+            justify-content: space-between;
+            border-radius: 0;
+        }
+        
+        .mem-text h2 {
+            font-family: var(--font-head);
+            font-weight: 800;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        
+        .mem-text p { color: #ccc; max-width: 600px; }
+
+        .btn-gold {
+            background: #FFD700;
+            color: #111;
+            padding: 15px 30px;
+            font-weight: 800;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            text-transform: uppercase;
         }
 
-        .social-links a:hover {
-            border-color: var(--primary-gold);
-            color: var(--primary-gold);
-        }
-
-        .copyright {
+        /* --- 7. CONTACT / FOOTER --- */
+        footer {
+            background: var(--brand-red);
+            color: white;
+            padding: 60px 5% 20px;
             text-align: center;
-            border-top: 1px solid #222;
-            padding-top: 20px;
-            font-size: 0.8rem;
-            color: var(--text-grey);
         }
+
+        .footer-logo {
+            font-family: var(--font-head);
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 15px;
+            transition: 0.3s;
+        }
+        
+        .social-icons a:hover { transform: scale(1.2); }
 
         /* --- RESPONSIVE --- */
         @media (max-width: 768px) {
-            .mobile-toggle { display: block; }
+            .mobile-toggle { display: block; color: var(--brand-dark); }
             .nav-links {
+                display: none;
+                flex-direction: column;
                 position: absolute;
                 top: 70px;
                 left: 0;
                 width: 100%;
-                background: black;
-                flex-direction: column;
+                background: white;
                 padding: 20px;
-                text-align: center;
-                display: none;
-                border-bottom: 1px solid var(--primary-gold);
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
             }
             .nav-links.active { display: flex; }
-            .hero-content h1 { font-size: 2.5rem; }
-            section { padding-top: 120px; }
-            #home { display: flex; } /* Ensure home keeps flex on mobile */
+            .membership-banner { flex-direction: column; text-align: center; gap: 20px; }
+            .hero-title { font-size: 2rem; }
+            .cat-img { width: 70px; height: 70px; }
+            .section-header { font-size: 1.5rem; }
         }
     </style>
 </head>
@@ -421,102 +397,126 @@
 
     <!-- HEADER -->
     <header>
-        <div class="logo">SB Fashions</div>
-        <div class="mobile-toggle" onclick="toggleMenu()">
-            <i class="fas fa-bars"></i>
+        <div class="top-bar">
+            Use Code: NEW20 for Flat 20% Off | Free Shipping on Orders Above ₹499
         </div>
-        <nav>
+        <nav class="main-nav">
+            <div class="mobile-toggle" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            
+            <a href="#" class="logo">SB Fashions</a>
+            
             <ul class="nav-links" id="navLinks">
-                <li><a onclick="showSection('home')" class="active">Home</a></li>
-                <li><a onclick="showSection('shop')">Collection</a></li>
-                <li><a onclick="showSection('about')">The Brand</a></li>
-                <li><a onclick="showSection('contact')">Contact</a></li>
+                <li><a href="#" onclick="scrollToSection('hero')">Home</a></li>
+                <li><a href="#" onclick="scrollToSection('topwear')">Topwear</a></li>
+                <li><a href="#" onclick="scrollToSection('bottomwear')">Bottomwear</a></li>
+                <li><a href="#" onclick="scrollToSection('membership')">Membership</a></li>
+                <li><a href="#" onclick="scrollToSection('contact')">Contact</a></li>
             </ul>
+
+            <div class="nav-icons">
+                <i class="fas fa-search"></i>
+                <a href="https://wa.me/8800732487" target="_blank"><i class="fab fa-whatsapp" style="color:#25D366;"></i></a>
+                <i class="fas fa-user"></i>
+            </div>
         </nav>
     </header>
 
     <!-- HERO SECTION -->
-    <section id="home" class="active-section">
-        <div class="hero-content">
-            <h1>Redefining Luxury</h1>
-            <p>Exclusive Premium Apparel by Subhash Sheet</p>
-            <a onclick="showSection('shop')" class="btn-gold">Explore Collection</a>
+    <section id="hero" class="hero-section">
+        <div class="hero-overlay">
+            <h1 class="hero-title">Official<br>Merchandise</h1>
+            <p>Made for the fans, by the fans.</p>
+            <button class="btn-red" onclick="scrollToSection('topwear')">Shop The Collection</button>
         </div>
     </section>
 
-    <!-- SHOP SECTION -->
-    <section id="shop">
-        <h2 class="section-title">The Premium Edit</h2>
-        <div class="products-grid">
+    <!-- CATEGORY ROW -->
+    <div class="category-row">
+        <div class="cat-item" onclick="scrollToSection('topwear')">
+            <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=200&auto=format&fit=crop" class="cat-img" alt="T-Shirts">
+            <div class="cat-name">T-Shirts</div>
+        </div>
+        <div class="cat-item" onclick="scrollToSection('topwear')">
+            <img src="https://images.unsplash.com/photo-1617137968427-85924c809a10?q=80&w=200&auto=format&fit=crop" class="cat-img" alt="Polos">
+            <div class="cat-name">Polos</div>
+        </div>
+        <div class="cat-item" onclick="scrollToSection('bottomwear')">
+            <img src="https://images.unsplash.com/photo-1542272617-08f083157f5d?q=80&w=200&auto=format&fit=crop" class="cat-img" alt="Bottoms">
+            <div class="cat-name">Joggers</div>
+        </div>
+        <div class="cat-item" onclick="scrollToSection('topwear')">
+            <img src="https://images.unsplash.com/photo-1596755094514-f87e34085b2c?q=80&w=200&auto=format&fit=crop" class="cat-img" alt="Shirts">
+            <div class="cat-name">Shirts</div>
+        </div>
+        <div class="cat-item" onclick="scrollToSection('topwear')">
+            <img src="https://images.unsplash.com/photo-1503341455253-b2e72333dbdb?q=80&w=200&auto=format&fit=crop" class="cat-img" alt="Oversized">
+            <div class="cat-name">Oversized</div>
+        </div>
+    </div>
+
+    <!-- PRODUCT SECTION: TOPWEAR -->
+    <section id="topwear" class="section-container">
+        <h2 class="section-header">Trending Topwear</h2>
+        <div class="product-grid">
             
             <!-- Product 1 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?q=80&w=800&auto=format&fit=crop" alt="Premium Tee" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Midnight Black Signature</h3>
-                    <div class="product-price">₹1,999</div>
-                    <button class="btn-buy" onclick="orderWhatsApp('Midnight Black Signature', '1999')">
-                        <i class="fab fa-whatsapp"></i> Buy Now
+                <span class="badge-new">Best Seller</span>
+                <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=600&auto=format&fit=crop" alt="Tshirt" class="p-img">
+                <div class="p-details">
+                    <div class="p-cat">Oversized T-Shirts</div>
+                    <h3 class="p-title">Marvel: Black Panther</h3>
+                    <div class="p-price-row">
+                        <div class="price">₹699 <span>₹999</span></div>
+                    </div>
+                    <button class="btn-cart" onclick="orderWhatsApp('Marvel Black Panther Tee', '699')">
+                        <i class="fab fa-whatsapp"></i> Add to Cart
                     </button>
                 </div>
             </div>
 
             <!-- Product 2 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?q=80&w=800&auto=format&fit=crop" alt="Premium Tee" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Royal Noir Tee</h3>
-                    <div class="product-price">₹1,499</div>
-                    <button class="btn-buy" onclick="orderWhatsApp('Royal Noir Tee', '1499')">
-                        <i class="fab fa-whatsapp"></i> Buy Now
+                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=600&auto=format&fit=crop" alt="Tshirt" class="p-img">
+                <div class="p-details">
+                    <div class="p-cat">Classic Fit</div>
+                    <h3 class="p-title">Batman: The Dark Knight</h3>
+                    <div class="p-price-row">
+                        <div class="price">₹599 <span>₹899</span></div>
+                    </div>
+                    <button class="btn-cart" onclick="orderWhatsApp('Batman Dark Knight Tee', '599')">
+                        <i class="fab fa-whatsapp"></i> Add to Cart
                     </button>
                 </div>
             </div>
 
             <!-- Product 3 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1617137968427-85924c809a10?q=80&w=800&auto=format&fit=crop" alt="Premium Tee" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">The Gold Edition Polo</h3>
-                    <div class="product-price">₹2,499</div>
-                    <button class="btn-buy" onclick="orderWhatsApp('The Gold Edition Polo', '2499')">
-                        <i class="fab fa-whatsapp"></i> Buy Now
+                <span class="badge-new">New</span>
+                <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=600&auto=format&fit=crop" alt="Tshirt" class="p-img">
+                <div class="p-details">
+                    <div class="p-cat">Polo T-Shirts</div>
+                    <h3 class="p-title">Solid Black Premium Polo</h3>
+                    <div class="p-price-row">
+                        <div class="price">₹899 <span>₹1299</span></div>
+                    </div>
+                    <button class="btn-cart" onclick="orderWhatsApp('Solid Black Polo', '899')">
+                        <i class="fab fa-whatsapp"></i> Add to Cart
                     </button>
                 </div>
             </div>
 
             <!-- Product 4 -->
             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?q=80&w=800&auto=format&fit=crop" alt="Premium Tee" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Urban Luxe Oversized</h3>
-                    <div class="product-price">₹1,799</div>
-                    <button class="btn-buy" onclick="orderWhatsApp('Urban Luxe Oversized', '1799')">
-                        <i class="fab fa-whatsapp"></i> Buy Now
-                    </button>
-                </div>
-            </div>
-
-             <!-- Product 5 -->
-             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?q=80&w=800&auto=format&fit=crop" alt="Premium Tee" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Classic White Essential</h3>
-                    <div class="product-price">₹1,299</div>
-                    <button class="btn-buy" onclick="orderWhatsApp('Classic White Essential', '1299')">
-                        <i class="fab fa-whatsapp"></i> Buy Now
-                    </button>
-                </div>
-            </div>
-
-             <!-- Product 6 -->
-             <div class="product-card">
-                <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?q=80&w=800&auto=format&fit=crop" alt="Premium Tee" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Vintage Wash Charcoal</h3>
-                    <div class="product-price">₹1,899</div>
-                    <button class="btn-buy" onclick="orderWhatsApp('Vintage Wash Charcoal', '1899')">
-                        <i class="fab fa-whatsapp"></i> Buy Now
+                <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?q=80&w=600&auto=format&fit=crop" alt="Tshirt" class="p-img">
+                <div class="p-details">
+                    <div class="p-cat">Oversized</div>
+                    <h3 class="p-title">Naruto: Hidden Leaf</h3>
+                    <div class="p-price-row">
+                        <div class="price">₹799 <span>₹1199</span></div>
+                    </div>
+                    <button class="btn-cart" onclick="orderWhatsApp('Naruto Hidden Leaf Tee', '799')">
+                        <i class="fab fa-whatsapp"></i> Add to Cart
                     </button>
                 </div>
             </div>
@@ -524,176 +524,123 @@
         </div>
     </section>
 
-    <!-- ABOUT SECTION -->
-    <section id="about">
-        <h2 class="section-title">The Brand</h2>
-        <div class="about-container">
-            <div class="about-image">
-                <!-- Using a placeholder for the brand owner/model -->
-                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=800&auto=format&fit=crop" alt="Subhash Sheet">
+    <!-- MEMBERSHIP SECTION -->
+    <section id="membership" class="membership-banner">
+        <div class="mem-text">
+            <h2>SB EXCLUSIVE MEMBERSHIP</h2>
+            <p>Become a member and get extra discounts, early access to new drops, and free shipping on all orders. Join the fandom elite.</p>
+        </div>
+        <button class="btn-gold" onclick="orderWhatsApp('SB Membership Inquiry', 'Premium')">Join Now</button>
+    </section>
+
+    <!-- PRODUCT SECTION: BOTTOMWEAR -->
+    <section id="bottomwear" class="section-container">
+        <h2 class="section-header">Best in Bottomwear</h2>
+        <div class="product-grid">
+            
+            <!-- Product 5 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1552902865-b72c031ac5ea?q=80&w=600&auto=format&fit=crop" alt="Joggers" class="p-img">
+                <div class="p-details">
+                    <div class="p-cat">Joggers</div>
+                    <h3 class="p-title">Urban Cargo Joggers</h3>
+                    <div class="p-price-row">
+                        <div class="price">₹1,199 <span>₹1,599</span></div>
+                    </div>
+                    <button class="btn-cart" onclick="orderWhatsApp('Urban Cargo Joggers', '1199')">
+                        <i class="fab fa-whatsapp"></i> Add to Cart
+                    </button>
+                </div>
             </div>
-            <div class="about-text">
-                <h3>Crafted for the Elite</h3>
-                <p>Welcome to <strong>SB Fashions Store</strong>, a vision brought to life by <strong>Subhash Sheet</strong>. We believe that style is a way to say who you are without having to speak.</p>
-                <p>Born from a passion for high-quality fabrics and timeless designs, SB Fashions bridges the gap between modern streetwear and classic luxury. Every stitch tells a story of perfection, designed for those who appreciate the finer things in life.</p>
-                <p>Whether you are looking for the perfect fit for a corporate event or a casual evening out, our premium collection ensures you stand out with elegance and confidence.</p>
-                <div class="signature">Subhash Sheet</div>
-                <p style="font-size: 0.8rem; margin-top:5px; color:#888;">Founder & Owner</p>
+
+            <!-- Product 6 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1517445312882-5668b9f03633?q=80&w=600&auto=format&fit=crop" alt="Shorts" class="p-img">
+                <div class="p-details">
+                    <div class="p-cat">Shorts</div>
+                    <h3 class="p-title">Summer Cotton Shorts</h3>
+                    <div class="p-price-row">
+                        <div class="price">₹599 <span>₹899</span></div>
+                    </div>
+                    <button class="btn-cart" onclick="orderWhatsApp('Summer Cotton Shorts', '599')">
+                        <i class="fab fa-whatsapp"></i> Add to Cart
+                    </button>
+                </div>
             </div>
+
+            <!-- Product 7 -->
+            <div class="product-card">
+                <span class="badge-new">Trending</span>
+                <img src="https://images.unsplash.com/photo-1542272617-08f083157f5d?q=80&w=600&auto=format&fit=crop" alt="Jeans" class="p-img">
+                <div class="p-details">
+                    <div class="p-cat">Denim</div>
+                    <h3 class="p-title">Classic Blue Denim</h3>
+                    <div class="p-price-row">
+                        <div class="price">₹1,499 <span>₹2,199</span></div>
+                    </div>
+                    <button class="btn-cart" onclick="orderWhatsApp('Classic Blue Denim', '1499')">
+                        <i class="fab fa-whatsapp"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
+            <!-- Product 8 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1624378439575-d8705ad7ae80?q=80&w=600&auto=format&fit=crop" alt="Trousers" class="p-img">
+                <div class="p-details">
+                    <div class="p-cat">Chinos</div>
+                    <h3 class="p-title">Slim Fit Chinos - Beige</h3>
+                    <div class="p-price-row">
+                        <div class="price">₹999 <span>₹1,499</span></div>
+                    </div>
+                    <button class="btn-cart" onclick="orderWhatsApp('Slim Fit Chinos Beige', '999')">
+                        <i class="fab fa-whatsapp"></i> Add to Cart
+                    </button>
+                </div>
+            </div>
+
         </div>
     </section>
 
-    <!-- CONTACT SECTION -->
-    <section id="contact">
-        <h2 class="section-title">Get in Touch</h2>
-        <div class="contact-wrapper">
-            <div class="contact-info">
-                <h3>Contact Information</h3>
-                <p style="margin-bottom: 30px; color: #888;">We are here to assist you with your premium shopping experience.</p>
-                
-                <div class="contact-item">
-                    <i class="fas fa-phone-alt"></i>
-                    <div>
-                        <h4>Phone / WhatsApp</h4>
-                        <p>+91 88007 32487</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fas fa-envelope"></i>
-                    <div>
-                        <h4>Email</h4>
-                        <p>contact@sbfashions.store</p>
-                    </div>
-                </div>
-
-                <div class="contact-item">
-                    <i class="fab fa-instagram"></i>
-                    <div>
-                        <h4>Instagram</h4>
-                        <p>@sb_fashions_store</p>
-                    </div>
-                </div>
-
-                <div class="social-links" style="margin-top: 40px;">
-                    <a href="https://www.facebook.com/subhash.sheet.9/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/sb_fashions_store/" target="_blank"><i class="fab fa-instagram"></i></a>
-                    <a href="https://wa.me/8800732487" target="_blank"><i class="fab fa-whatsapp"></i></a>
-                </div>
-            </div>
-
-            <div class="contact-form">
-                <h3>Send a Message</h3>
-                <form onsubmit="sendMessage(event)">
-                    <div class="form-group">
-                        <input type="text" id="name" placeholder="Your Name" required>
-                    </div>
-                    <div class="form-group">
-                        <input type="text" id="phone" placeholder="Your Phone Number" required>
-                    </div>
-                    <div class="form-group">
-                        <textarea id="message" rows="5" placeholder="Your Message" required></textarea>
-                    </div>
-                    <button type="submit" class="btn-gold" style="width: 100%;">Send Message</button>
-                </form>
-            </div>
+    <!-- CONTACT & FOOTER -->
+    <footer id="contact">
+        <div class="footer-logo">SB Fashions Store</div>
+        <p style="margin-bottom: 20px;">The Home of Pop Culture Merchandise in India.</p>
+        
+        <div class="social-icons">
+            <a href="https://www.facebook.com/subhash.sheet.9/" target="_blank"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/sb_fashions_store/" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://wa.me/8800732487" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-brand">
-                <h2>SB Fashions</h2>
-                <p>The ultimate destination for premium T-shirts and luxury apparel.</p>
-            </div>
-            <div class="footer-links">
-                <h4 style="color:white; margin-bottom:15px;">Quick Links</h4>
-                <ul style="line-height: 2;">
-                    <li><a onclick="showSection('home')">Home</a></li>
-                    <li><a onclick="showSection('shop')">Shop</a></li>
-                    <li><a onclick="showSection('about')">About Us</a></li>
-                    <li><a onclick="showSection('contact')">Contact</a></li>
-                </ul>
-            </div>
-            <div class="footer-links">
-                <h4 style="color:white; margin-bottom:15px;">Connect</h4>
-                <div class="social-links" style="margin-top:0;">
-                    <a href="https://www.facebook.com/subhash.sheet.9/" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/sb_fashions_store/" target="_blank"><i class="fab fa-instagram"></i></a>
-                </div>
-            </div>
-        </div>
-        <div class="copyright">
-            <p>&copy; 2024 SB Fashions Store. Designed for Subhash Sheet. All Rights Reserved.</p>
+        
+        <div style="margin-top: 30px; border-top: 1px solid rgba(255,255,255,0.2); padding-top: 20px; font-size: 0.8rem;">
+            &copy; 2024 SB Fashions Store. All Rights Reserved. <br>
+            Designed for Subhash Sheet.
         </div>
     </footer>
 
-    <!-- JAVASCRIPT LOGIC -->
+    <!-- JAVASCRIPT -->
     <script>
         // Toggle Mobile Menu
         function toggleMenu() {
-            const nav = document.getElementById('navLinks');
-            nav.classList.toggle('active');
+            document.getElementById('navLinks').classList.toggle('active');
         }
 
-        // Section Switching (SPA Feel)
-        function showSection(sectionId) {
-            // Hide all sections
-            const sections = document.querySelectorAll('section');
-            sections.forEach(section => {
-                section.classList.remove('active-section');
-                // Fix for Home section display property
-                if(section.id === 'home') {
-                    section.style.display = 'none';
-                }
-            });
-
-            // Remove active class from nav links
-            const navLinks = document.querySelectorAll('.nav-links a');
-            navLinks.forEach(link => link.classList.remove('active'));
-
-            // Show target section
-            const target = document.getElementById(sectionId);
-            target.classList.add('active-section');
-            
-            // Handle Home flex display manually
-            if(sectionId === 'home') {
-                target.style.display = 'flex';
-            } else {
-                target.style.display = 'block'; // Ensure other sections block
-            }
-
-            // Close mobile menu if open
+        // Smooth Scrolling
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+            // Close menu on mobile after click
             document.getElementById('navLinks').classList.remove('active');
-
-            // Scroll to top
-            window.scrollTo(0, 0);
         }
 
-        // Order via WhatsApp
-        function orderWhatsApp(productName, price) {
+        // WhatsApp Ordering System
+        function orderWhatsApp(product, price) {
             const phone = "8800732487";
-            const text = `Hello SB Fashions, I am interested in buying the *${productName}* priced at ₹${price}. Please provide me with more details.`;
+            const text = `Hey SB Fashions! 🤘\nI want to buy the *${product}* for ₹${price}.\nPlease confirm stock and delivery details.`;
             const url = `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
             window.open(url, '_blank');
         }
-
-        // Contact Form to WhatsApp
-        function sendMessage(e) {
-            e.preventDefault();
-            const name = document.getElementById('name').value;
-            const phoneNum = document.getElementById('phone').value;
-            const msg = document.getElementById('message').value;
-
-            const ownerPhone = "8800732487";
-            const text = `*New Inquiry from Website*\nName: ${name}\nPhone: ${phoneNum}\nMessage: ${msg}`;
-            const url = `https://wa.me/${ownerPhone}?text=${encodeURIComponent(text)}`;
-            window.open(url, '_blank');
-            
-            // Clear form
-            e.target.reset();
-        }
     </script>
+
 </body>
 </html>
